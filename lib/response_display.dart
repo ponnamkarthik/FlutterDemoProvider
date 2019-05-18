@@ -16,12 +16,24 @@ class _ResponseDisplayState extends State<ResponseDisplay> {
       padding: const EdgeInsets.all(16.0),
       child: appState.isFetching
           ? CircularProgressIndicator()
-          : Text(
-              appState.getResponseText,
-              style: TextStyle(
-                fontSize: 24.0,
-              ),
-            ),
+          : appState.getResponseJson() != null
+              ? ListView.builder(
+                  primary: false,
+                  shrinkWrap: true,
+                  itemCount: appState.getResponseJson().length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      leading: CircleAvatar(
+                        backgroundImage: NetworkImage(
+                            appState.getResponseJson()[index]['avatar']),
+                      ),
+                      title: Text(
+                        appState.getResponseJson()[index]["first_name"],
+                      ),
+                    );
+                  },
+                )
+              : Text("Press Button above to fetch data"),
     );
   }
 }
