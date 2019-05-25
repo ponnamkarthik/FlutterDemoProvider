@@ -2,12 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_demo_provider/app_state.dart';
 import 'package:provider/provider.dart';
 
-class TextDisplay extends StatefulWidget {
-  @override
-  _TextDisplayState createState() => _TextDisplayState();
-}
-
-class _TextDisplayState extends State<TextDisplay> {
+class TextDisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appState = Provider.of<AppState>(context);
